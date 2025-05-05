@@ -188,7 +188,6 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # lo cambio por la de polybar
-# se volvio a como antes
 bar {
         status_command i3status
 }
