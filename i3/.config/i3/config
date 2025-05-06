@@ -19,6 +19,15 @@ font pango:monospace 14
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+gaps outer 4
+for_window [all] title_window_icon on
+for_window [all] title_window_icon padding 5px
+for_window [class=".*"] border pixel 5
+default_border pixel 5
+title_align center
+gaps inner 10px
+gaps top 46px
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
@@ -40,6 +49,14 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 1 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 1 # decrease screen brightness
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -56,8 +73,11 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
+#Cambio el dmenu por ROFI
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-7/launcher.sh
+#bindsym $mod+x exec --no-startup-id powermenu_t2
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -188,9 +208,34 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # lo cambio por la de polybar
-#prueba de cambios
-bar {
-        status_command i3status
-}
+#bar {
+#        status_command i3status
+#}
+exec_always --no-startup-id killall polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+#bindsym $mod+p exec "~/.config/polybar/launch.sh"
 
 
+#wallpaper switcher
+bindsym $mod+Shift+w exec "~/.local/bin/wall-d -d /home/bautipessagno/alopes/Pictures/Wallpapers| -f -p"
+
+#screenshot
+bindsym Print exec flameshot gui
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
