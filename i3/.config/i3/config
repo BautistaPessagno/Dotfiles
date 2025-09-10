@@ -247,7 +247,7 @@ bindsym Print exec flameshot gui
 
 
 #cambio de idioma de teclado
-exec_always --no-startup-id "setxkbmap -layout us,es -variant ,, -option grp:ctrl_space_toggle"
+exec_always --no-startup-id "setxkbmap -layout us,es -option grp:ctrl_space_toggle"
 
 #agergo un background
 # Fija el wallpaper con feh al iniciar i3
