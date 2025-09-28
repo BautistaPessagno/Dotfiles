@@ -33,7 +33,7 @@ return {
         keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
         keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
         keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+        -- keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
         keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
         keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
@@ -98,4 +98,3 @@ return {
     -- end
   end,
 }
-

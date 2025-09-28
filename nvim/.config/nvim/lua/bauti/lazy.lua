@@ -20,3 +20,7 @@ require("lazy").setup({ { import = "bauti.plugins" }, { import = "bauti.plugins.
     notify = false,
   },
 })
+
+require("cursor-agent.util")
+
+-- cursor-agent.nvim auto-initializes; we configure it in `bauti/plugins/cursor-agent.lua`.
