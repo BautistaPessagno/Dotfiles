@@ -2,13 +2,15 @@ return {
   {
     "tpope/vim-fugitive",
     keys = {
-      { "<leader>gs", "<cmd>Git<CR>" },
+      { "<leader>gs", "<cmd>vertical Git<CR>", desc = "Open Git Status" },
       { "<leader>gj", "<cmd>Git next<CR>" },
       { "<leader>gk", "<cmd>Git prev<CR>" },
       { "<leader>gc", "<cmd>Git commit<CR>" },
       { "<leader>gp", "<cmd>Git push<CR>" },
       { "<leader>gb", "<cmd>Git blame<CR>" },
       { "<leader>ga", "<cmd>Git add .<CR>" },
+      { "<leader>gr", "<cmd>Git restore .<CR>" },
+      { "<leader>gR", "<cmd>Git restore --staged .<CR>" },
     },
   },
   {
